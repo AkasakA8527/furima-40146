@@ -11,9 +11,7 @@
 | first_name_kanji   | string | null: false               |
 | family_name_kana   | string | null: false               |
 | first_name_kana    | string | null: false               |
-| birthday_year      | date   | null: false               |
-| birthday_month     | date   | null: false               |
-| birthday_day       | date   | null: false               |
+| birthday           | date   | null: false               |
 
 ### Association
 - has_many :sale_items
@@ -29,7 +27,7 @@
 | condition_id  | integer    | null: false                    |
 | whopay_id     | integer    | null: false                    |
 | prefecture_id | integer    | null: false                    |
-| shipdays_id   | integer    | null: false                    |
+| shipday_id    | integer    | null: false                    |
 | price         | integer    | null: false                    |
 | user          | references | null: false, foreign_key: true |
 
@@ -49,7 +47,7 @@
 - belongs_to :sale_item
 - has_one :purchase_description
 
-## purchase_descriptionテーブル
+## purchase_descriptionsテーブル
 
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
