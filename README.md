@@ -1,24 +1,46 @@
-# README
+# FURIMAのテーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## usersテーブル
 
-Things you may want to cover:
+| Column             | Type      | Options                   |
+| ------------------ | --------- | ------------------------- |
+| email              | string    | null: false, unique: true |
+| encrypted_password | string    | null: false               |
+| name               | string    | null: false               |
+| occupation         | text      | null: false               |
+| age      | integer | null: false |
 
-* Ruby version
+### Association
+- has_many :sale_items
+- has_many :purchase_intentions
 
-* System dependencies
+## sale_itemsテーブル
 
-* Configuration
+| Column     | Type       | Options                        |
+| ---------- | ---------- | ------------------------------ |
+| item_name      | string     | null: false                    |
+| spec | text       | null: false                    |
+| user       | references | null: false, foreign_key: true |
 
-* Database creation
+### Association
+- belongs_to :user
+- has_many :purchase_intentions
 
-* Database initialization
+## purchase_intentionsテーブル
 
-* How to run the test suite
+| Column    | Type       | Options                        |
+| --------- | ---------- | ------------------------------ |
+| price   | integer       | null: false                    |
+| user   | reference       | null: false, foreign_key: true                    |
+| sale_item | references | null: false, foreign_key: true |
 
-* Services (job queues, cache servers, search engines, etc.)
+### Association
+- belongs_to :user
+- belongs_to :sale_item
 
-* Deployment instructions
+## descriptionテーブル
 
-* ...
+| Column    | Type       | Options                       |
+| --------- | ---------- | ----------------------------- |
+| address   | string     | null: false                   |
+| purchase_intention | references | null: false, foreign_key: true |
