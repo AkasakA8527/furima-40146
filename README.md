@@ -31,12 +31,13 @@
 | Column    | Type       | Options                        |
 | --------- | ---------- | ------------------------------ |
 | price   | integer       | null: false                    |
-| user   | reference       | null: false, foreign_key: true                    |
+| user   | reference       | null: false, foreign_key: true    |
 | sale_item | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
 - belongs_to :sale_item
+- has_one :description
 
 ## descriptionテーブル
 
@@ -44,3 +45,6 @@
 | --------- | ---------- | ----------------------------- |
 | address   | string     | null: false                   |
 | purchase_intention | references | null: false, foreign_key: true |
+
+### Association
+- belongs_to :purchase_intention
