@@ -1,3 +1,9 @@
+.form-wrap {
+  width: 50%;
+  background-color: white;
+  padding-bottom: 70px;
+}
+
 .login-btn {
   width: 50%;
   margin: 0 auto;
