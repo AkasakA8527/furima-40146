@@ -15,6 +15,5 @@ class ApplicationController < ActionController::Base
     keys = [:nickname, :password, :encrypted_password, :family_name_kanji, :first_name_kanji, :family_name_kana,
             :first_name_kana, :birthday]
     devise_parameter_sanitizer.permit(:sign_up, keys:)
-    devise_parameter_sanitizer.permit(:account_update, keys:)
   end
 end
