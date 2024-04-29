@@ -1,0 +1,19 @@
+<div class="item">
+  <div class="upper-item">
+    <div class="item-user">
+      <!-- 投稿したユーザー名情報を出力する -->
+
+    </div>
+    <div class="item-date">
+      <!-- 投稿した時刻を出力する -->
+
+    </div>
+  </div>
+  <div class="lower-item">
+    <div class="item-content">
+      <!-- 投稿したメッセージ内容を記述する -->
+      <%= item.content %>
+    </div>
+    <%= image_tag item.image, class: 'item-image' if item.image.attached? %>
+  </div>
+</div>
