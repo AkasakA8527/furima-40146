@@ -1,0 +1,19 @@
+<div class="item">
+  <div class="upper-item">
+    <div class="item-user">
+      <!-- 投稿したユーザー名情報を出力する -->
+      <%= item.user.name %>
+    </div>
+    <div class="item-date">
+      <!-- 投稿した時刻を出力する -->
+      <%= l item.created_at %>
+    </div>
+  </div>
+  <div class="lower-item">
+    <div class="item-content">
+      <!-- 投稿したメッセージ内容を記述する -->
+      <%= item.content %>
+    </div>
+    <%= image_tag item.image.variant(resize: '500x500'), class: 'item-image' if item.image.attached? %>
+  </div>
+</div>
