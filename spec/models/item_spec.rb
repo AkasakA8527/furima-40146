@@ -13,7 +13,6 @@ RSpec.describe Item, type: :model do
     end
 
     context '新規入力できない場合' do
-
       it '画像が空では登録できない' do
         @item.image = nil
         @item.valid?
@@ -62,17 +61,17 @@ RSpec.describe Item, type: :model do
       it '価格が300円未満だと登録できない' do
         @item.price = Faker::Number.within(range: 0..299)
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
+        expect(@item.errors.full_messages).to include('Price must be greater than or equal to 300')
       end
       it '価格が999万9999円超だと登録できない' do
-        @item.price = Faker::Number.within(range: 10000000..20000000)
+        @item.price = Faker::Number.within(range: 10_000_000..20_000_000)
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
+        expect(@item.errors.full_messages).to include('Price must be less than or equal to 9999999')
       end
       it '価格が半角数値でないと登録できない' do
-        @item.price = "１５００"
+        @item.price = '１５００'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not a number")
+        expect(@item.errors.full_messages).to include('Price is not a number')
       end
     end
   end
