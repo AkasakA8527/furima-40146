@@ -1,19 +1,25 @@
 FactoryBot.define do
   factory :item do
-    nickname              { Faker::Name.initials(number: 2) }
-    email                 { Faker::Internet.email }
-    password              { Faker::Internet.password(min_length: 4) + '1a' }
-    password_confirmation { password }
-    family_name_kanji     do
-      kanji_names = %w[佐藤 鈴木 高橋 田中 伊藤 山本 中村 小林 吉田]
-      kanji_names.sample
+
+    item_name       do
+      item_names = %w[ドライバー ハンドバッグ 剪定バサミ 汎用レンズ ジャンバー]
+      item_names.sample
     end
-    first_name_kanji do
-      kanji_fnames = %w[一郎 忠 明夫 太郎 正男 旬 一平 幸治郎 優子]
-      kanji_fnames.sample
+    description     do
+      descriptions = %w[便利です きれいな商品です ガーデニングに必携 デスク周りにお一つ ちょうどよい使い心地]
+      descriptions.sample
     end
-    family_name_kana      { Gimei.last.katakana }
-    first_name_kana       { Gimei.first.katakana }
-    birthday              { Faker::Date.birthday }    
+    category_id              { Faker::Number.within(range: 2..11) }
+    condition_id             { Faker::Number.within(range: 2..7) }
+    whopay_id                { Faker::Number.within(range: 2..3) }
+    prefecture_id            { Faker::Number.within(range: 2..48) }
+    shipday_id               { Faker::Number.within(range: 2..4) }
+    price                    { Faker::Number.within(range: 300..9999999) }
+
+    association :user
+
+    after(:build) do |item|
+      item.image.attach(io: File.open('public/images/test_image.png'), filename: 'test_image.png')
+    end
   end
 end
