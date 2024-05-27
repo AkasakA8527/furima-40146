@@ -13,6 +13,8 @@ RSpec.describe Purchase, type: :model do
         expect(@order_purchase).to be_valid
       end
       it 'building_nameが空でも登録できる' do
+        @order_purchase.building_name = ''
+        @order_purchase.valid?
         expect(@order_purchase).to be_valid
       end
     end
