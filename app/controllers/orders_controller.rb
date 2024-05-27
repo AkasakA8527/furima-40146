@@ -2,15 +2,14 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :check_sold_out, only: [:index, :create]
   before_action :check_seller, only: [:index, :create]
+  before_action :item_find, only: [:index, :create]
 
   def index
-    @item = Item.find(params[:item_id])
     gon.public_key = ENV['PAYJP_PUBLIC_KEY']
     @order_purchase = OrderPurchase.new
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @order_purchase = OrderPurchase.new(order_params)
     if @order_purchase.valid?
       pay_item
@@ -23,6 +22,10 @@ class OrdersController < ApplicationController
   end
 
   private
+
+  def item_find
+    @item = Item.find(params[:item_id])
+  end
 
   def check_sold_out
     @item = Item.find(params[:item_id])

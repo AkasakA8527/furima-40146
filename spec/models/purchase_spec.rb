@@ -12,9 +12,22 @@ RSpec.describe Purchase, type: :model do
       it 'token, postal_code, prefecture, city, house_number, building_name, phone_numberが存在すれば登録できる' do
         expect(@order_purchase).to be_valid
       end
+      it 'building_nameが空でも登録できる' do
+        expect(@order_purchase).to be_valid
+      end
     end
 
     context '購入できない場合' do
+      it 'userが空では登録できない' do
+        @order_purchase.user_id = nil
+        @order_purchase.valid?
+        expect(@order_purchase.errors.full_messages).to include("User can't be blank")
+      end
+      it 'itemが空では登録できない' do
+        @order_purchase.item_id = nil
+        @order_purchase.valid?
+        expect(@order_purchase.errors.full_messages).to include("Item can't be blank")
+      end
       it 'tokenが空では登録できない' do
         @order_purchase.token = nil
         @order_purchase.valid?
@@ -39,6 +52,11 @@ RSpec.describe Purchase, type: :model do
         @order_purchase.city = ''
         @order_purchase.valid?
         expect(@order_purchase.errors.full_messages).to include("City can't be blank")
+      end
+      it 'house_numberが空では登録できない' do
+        @order_purchase.house_number = nil
+        @order_purchase.valid?
+        expect(@order_purchase.errors.full_messages).to include("House number can't be blank")
       end
       it 'phone_numberが空では登録できない' do
         @order_purchase.phone_number = ''
