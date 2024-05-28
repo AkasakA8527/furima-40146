@@ -14,10 +14,10 @@
 | birthday           | date   | null: false               |
 
 ### Association
-- has_many :sale_items
-- has_many :purchase_intentions
+- has_many :items
+- has_many :orders
 
-## sale_itemsテーブル
+## itemsテーブル
 
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
@@ -33,31 +33,31 @@
 
 ### Association
 - belongs_to :user
-- has_one :purchase_intention
+- has_one :order
 
-## purchase_intentionsテーブル
+## ordersテーブル
 
 | Column    | Type       | Options                        |
 | --------- | ---------- | ------------------------------ |
 | user      | references | null: false, foreign_key: true |
-| sale_item | references | null: false, foreign_key: true |
+| item      | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
-- belongs_to :sale_item
-- has_one :purchase_description
+- belongs_to :item
+- has_one :purchase
 
-## purchase_descriptionsテーブル
+## purchasesテーブル
 
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
-| zip                | string     | null: false                    |
+| postal_code        | string     | null: false                    |
 | prefecture_id      | integer    | null: false                    |
 | city               | string     | null: false                    |
-| street_number      | string     | null: false                    |
-| building           | string     |                                |
+| house_number       | string     | null: false                    |
+| building_name      | string     |                                |
 | phone_number       | string     | null: false                    |
-| purchase_intention | references | null: false, foreign_key: true |
+| order              | references | null: false, foreign_key: true |
 
 ### Association
-- belongs_to :purchase_intention
+- belongs_to :order

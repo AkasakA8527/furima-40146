@@ -262,11 +262,12 @@ a {
 
 .sold-out {
   position: absolute;
-  top: 40%;
+  top: 50%;
+  left: 0;
   width: 100%;
   text-align: center;
   background-color: crimson;
-  transform: skewY(-10deg);
+  transform: skewY(-10deg) translateY(-50%);
 }
 
 .sold-out>span {
